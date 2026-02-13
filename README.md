@@ -29,10 +29,9 @@
 - CoinGecko API (криптовалюты)
 
 ## 📸 Скриншоты
-
-<img width="1099" height="761" alt="SkyVentor_XljJ37AJaZ" src="https://github.com/user-attachments/assets/ef75a4d5-b38a-42c2-bda7-109d23d2ccf6" />
-<img width="1099" height="761" alt="SkyVentor_XGCveQYLD1" src="https://github.com/user-attachments/assets/e9d3e139-b226-4148-8197-d1dff2c77a9b" />
-<img width="1099" height="761" alt="SkyVentor_kGHUrWf8kw" src="https://github.com/user-attachments/assets/4b9c4e0d-fbe7-4549-8535-a7bc58134385" />
+<img width="1099" height="761" alt="SkyVentor_XljJ37AJaZ" src="https://github.com/user-attachments/assets/f27713eb-044d-4184-abde-61fd940a9473" />
+<img width="1099" height="761" alt="SkyVentor_XGCveQYLD1" src="https://github.com/user-attachments/assets/29f6ee49-ffe6-4662-b558-3589139420f3" />
+<img width="1099" height="761" alt="SkyVentor_kGHUrWf8kw" src="https://github.com/user-attachments/assets/a0da878e-9517-4665-9fbb-734e220619b4" />
 
 ## 📦 Установка
 
