@@ -1,0 +1,36 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+build/
+
+# Go
+*.test
+*.out
+go.work
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/node_modules/
+.DS_Store
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Wails
+wails.log
+wails.exe
+
+# Settings (local only)
+.skyventor/

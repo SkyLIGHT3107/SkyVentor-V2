@@ -1,0 +1,71 @@
+/* Light Theme */
+body[data-theme="light"] {
+    --bg: #f5f7fa;
+    --glass: rgba(255, 255, 255, 0.8);
+    --glass-hover: rgba(245, 247, 250, 0.9);
+    --accent: #0066ff;
+    --accent-glow: rgba(0, 102, 255, 0.2);
+    --text: #1a1d29;
+    --text-secondary: #6b7280;
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.1);
+    --success: #10b981;
+    --error: #ef4444;
+}
+
+body[data-theme="light"] {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
+}
+
+body[data-theme="light"] .glass-card {
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+body[data-theme="light"] .glass-card:hover {
+    box-shadow: 
+        0 12px 48px 0 rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
+body[data-theme="light"] .primary-button {
+    background: linear-gradient(135deg, #0066ff, #0052cc);
+}
+
+body[data-theme="light"] .github-link {
+    background: linear-gradient(135deg, #0066ff, #0052cc);
+}
+
+body[data-theme="light"] .amount-input,
+body[data-theme="light"] .currency-select {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .amount-input:hover,
+body[data-theme="light"] .currency-select:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .currency-select option {
+    background: var(--bg);
+    color: var(--text);
+}
+
+body[data-theme="light"] .setting-option,
+body[data-theme="light"] .tech-item {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body[data-theme="light"] .setting-option:hover,
+body[data-theme="light"] .tech-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .conversion-info {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body[data-theme="light"] .about-author {
+    background: rgba(0, 0, 0, 0.03);
+}

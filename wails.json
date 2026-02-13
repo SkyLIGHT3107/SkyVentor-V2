@@ -1,0 +1,20 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "SkyVentor V2",
+  "outputfilename": "skyventor",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "SkyLight",
+    "email": "skylight@example.com"
+  },
+  "info": {
+    "companyName": "SkyLight",
+    "productName": "SkyVentor",
+    "productVersion": "2.0.0",
+    "copyright": "Copyright 2026 SkyLight",
+    "comments": "Professional desktop currency converter"
+  }
+}

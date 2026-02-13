@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyVentor V2</title>
+    <link rel="stylesheet" href="/src/styles/glass.css">
+    <link rel="stylesheet" href="/src/styles/themes.css">
+    <link rel="stylesheet" href="/src/styles/animations.css">
+</head>
+<body data-theme="dark">
+    <div id="app">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar expanded">
+            <div class="sidebar-header">
+                <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-page="converter">
+                    <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <span class="nav-text">Конвертер</span>
+                </button>
+                
+                <button class="nav-item" data-page="rates">
+                    <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"/>
+                        <line x1="18" y1="20" x2="18" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="16"/>
+                    </svg>
+                    <span class="nav-text">Таблица курсов</span>
+                </button>
+                
+                <button class="nav-item" data-page="settings">
+                    <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6M6 12H1m6 0h6"/>
+                    </svg>
+                    <span class="nav-text">Настройки</span>
+                </button>
+                
+                <button class="nav-item" data-page="about">
+                    <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4m0-4h.01"/>
+                    </svg>
+                    <span class="nav-text">О проекте</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+            <!-- Converter Page -->
+            <div id="page-converter" class="page active">
+                <div class="page-header">
+                    <h1 class="page-title">Конвертер валют</h1>
+                </div>
+                
+                <div class="converter-container">
+                    <div class="glass-card converter-card">
+                        <div class="currency-input-group">
+                            <div class="currency-select-wrapper">
+                                <select id="from-currency" class="currency-select">
+                                    <option value="USD" selected>USD</option>
+                                </select>
+                                <img id="from-flag" class="currency-flag" src="" alt="">
+                            </div>
+                            <input type="number" id="from-amount" class="amount-input" value="1" min="0" step="any">
+                        </div>
+
+                        <button id="swap-button" class="swap-button" aria-label="Swap currencies">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 16V4M7 4L3 8M7 4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                            </svg>
+                        </button>
+
+                        <div class="currency-input-group">
+                            <div class="currency-select-wrapper">
+                                <select id="to-currency" class="currency-select">
+                                    <option value="RUB" selected>RUB</option>
+                                </select>
+                                <img id="to-flag" class="currency-flag" src="" alt="">
+                            </div>
+                            <input type="number" id="to-amount" class="amount-input" value="0" readonly>
+                        </div>
+
+                        <div id="conversion-info" class="conversion-info">
+                            <span class="conversion-rate">1 USD = 0 RUB</span>
+                            <span class="conversion-time">Обновлено: --:--:--</span>
+                        </div>
+
+                        <button id="convert-button" class="primary-button">
+                            <span>Конвертировать</span>
+                            <div class="button-spinner hidden"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rates Table Page -->
+            <div id="page-rates" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Таблица курсов</h1>
+                </div>
+                
+                <div class="rates-container">
+                    <div class="glass-card rates-card">
+                        <div class="rates-header">
+                            <select id="rates-from" class="currency-select">
+                                <option value="USD" selected>USD</option>
+                            </select>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14m-7-7l7 7-7 7"/>
+                            </svg>
+                            <select id="rates-to" class="currency-select">
+                                <option value="RUB" selected>RUB</option>
+                            </select>
+                        </div>
+
+                        <div class="rates-table-wrapper">
+                            <table id="rates-table" class="rates-table">
+                                <thead>
+                                    <tr>
+                                        <th>Множитель</th>
+                                        <th id="rates-from-header">USD</th>
+                                        <th id="rates-to-header">RUB</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rates-tbody">
+                                    <!-- Filled by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="page-settings" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">Настройки</h1>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="glass-card settings-card">
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                </svg>
+                                <span>Тема оформления</span>
+                            </label>
+                            <div class="setting-options">
+                                <button class="setting-option active" data-theme="dark">
+                                    <span class="option-icon">🌙</span>
+                                    <span class="option-text">Темная</span>
+                                </button>
+                                <button class="setting-option" data-theme="light">
+                                    <span class="option-icon">☀️</span>
+                                    <span class="option-text">Светлая</span>
+                                </button>
+                                <button class="setting-option" data-theme="auto">
+                                    <span class="option-icon">🖥️</span>
+                                    <span class="option-text">Авто</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label class="setting-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <span>Язык интерфейса</span>
+                            </label>
+                            <div class="setting-options">
+                                <button class="setting-option active" data-lang="ru">
+                                    <span class="option-icon">🇷🇺</span>
+                                    <span class="option-text">Русский</span>
+                                </button>
+                                <button class="setting-option" data-lang="en">
+                                    <span class="option-icon">🇺🇸</span>
+                                    <span class="option-text">English</span>
+                                
+                            </div>
+                        </div>
+
+                        <div class="settings-info">
+                            Настройки автоматически сохраняются
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div id="page-about" class="page">
+                <div class="page-header">
+                    <h1 class="page-title">О проекте</h1>
+                </div>
+                
+                <div class="about-container">
+                    <div class="glass-card about-card">
+                        <div class="about-logo">
+                            <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="3"/>
+                                <path d="M30 50h40M50 30v40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <h2 class="about-title">SkyVentor</h2>
+                        <p class="about-version">Версия V2 1.0 (Beta)</p>
+
+                        <div class="about-author">
+                            <span class="author-label">Автор:</span>
+                            <span class="author-name">SkyLight</span>
+                        </div>
+
+                        <div class="about-tech">
+                            <h3 class="tech-title">Используемые технологии:</h3>
+                            <div class="tech-grid">
+                                <div class="tech-item">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M1.5 4.5h21v15h-21z"/>
+                                    </svg>
+                                    <span>VSCodium</span>
+                                </div>
+                                <div class="tech-item">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M3 3h18v18H3z"/>
+                                    </svg>
+                                    <span>Go 1.26</span>
+                                </div>
+                                <div class="tech-item">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <circle cx="12" cy="12" r="9"/>
+                                    </svg>
+                                    <span>Wails</span>
+                                </div>
+                                <div class="tech-item">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                    </svg>
+                                    <span>Vite</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://github.com/SkyLIGHT3107/SkyVentor-V2" class="github-link" target="_blank">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                            </svg>
+                            <span>GitHub репозиторий</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer" class="footer">
+            <div class="footer-content">
+                <span class="footer-text">SkyVentor // 2026 V2 (Stable)</span>
+                <a href="https://github.com/SkyLIGHT3107/SkyVentor-V2" class="footer-github" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                </a>
+            </div>
+            <button id="footer-toggle" class="footer-toggle" aria-label="Toggle footer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 15l-6-6-6 6"/>
+                </svg>
+            </button>
+        </footer>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
